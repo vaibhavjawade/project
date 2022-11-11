@@ -1,0 +1,30 @@
+<nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Shoping-Kart</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="productPage" *ngIf="sks.isLogin()">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="add-product" *ngIf="sks.isUser()">Add Products</a>
+        </li>
+      </ul>
+      <div class="justify-content-end" style="margin-left:70vw ;">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" routerLink="loginPage" *ngIf="!sks.isLogin()">Login / Registration</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" (click)="logout()" routerLink="loginPage" *ngIf="sks.isLogin()">Logout</a>
+            </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<router-outlet></router-outlet>

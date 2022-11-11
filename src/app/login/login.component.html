@@ -1,0 +1,52 @@
+<div class="text-center" *ngIf="message">{{message}}</div>
+<div class="container col-md-4 mt-5">
+  <div class="text-center border">
+  <!-- Login Form -->
+  <div *ngIf="login" >
+    <form [formGroup]="loginForm" (ngSubmit)="loginForm">
+    <h3 class="text-center text-info">Login Form</h3>
+<div>
+  <label for="email">Email</label><br>
+  <input placeholder="Email" type="email" formControlName="email"  id="email">
+</div>
+<div>
+  <label for="password">Password</label><br>
+  <input placeholder="Password" type="password" formControlName="password"  id="password">
+</div>
+<div #registration class="d-flex justify-content-end mt-1 me-3 pointer" (click)="regShow()">
+  <p class="text-primary ">New User Registration...</p>
+</div>
+<button class="btn btn-outline-secondary mt-1 mb-2" type="submit" (click)="loginUser()">Button</button>
+</form>
+</div>
+    <!-- Registration Form -->
+      <div *ngIf="!login">
+        <form [formGroup]="registrationForm" (ngSubmit)="registrationForm">
+        <h3 class="text-center text-info">Registration Form</h3>
+        <div>
+      <label for="fullName">User Full Name</label><br>
+      <input placeholder="Full Name" type="text" formControlName="fullName" id="fullName">
+    </div>
+    <div>
+      <label for="email">Email</label><br>
+      <input placeholder="Email" type="email" formControlName="email"  id="email">
+    </div>
+    <div>
+      <label for="password">Password</label><br>
+      <input placeholder="Password" type="password" formControlName="password"  id="password">
+    </div>
+    <div>
+    <label for="role">Role</label><br>
+    <select formControlName="role" id="role">
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+  </div>
+  <div #login class="d-flex justify-content-end me-3 pointer" (click)="regShow()">
+    <p class="text-primary ">Already User LoginHere...</p>
+  </div>
+    <button class="btn btn-outline-secondary mt-3" type="submit" (click)="saveFormData()">Button</button>
+    </form>
+  </div>
+  </div>
+</div>

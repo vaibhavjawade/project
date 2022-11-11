@@ -1,0 +1,69 @@
+<div class="text-center" *ngIf="message">{{message}}</div>
+<div class="text-center" *ngIf="isLoader">
+  <app-loader></app-loader>
+</div>
+<div class="container col-md-12">
+  <div class="row">
+    <div class="col-md-3 mt-3" *ngFor="let product of products;">
+      <div class="card mb-3">
+        <div>
+          <img style="width: 19.9vw;" [src]="product.productImageURL" [alt]="product.productDescription">
+        </div>
+        <div>
+          {{product.productDescription}}
+        </div>
+        <div class="text-info">
+          {{product.productName}}
+        </div>
+        <div>
+          {{product.productPrice | currency: 'INR'}}
+        </div>
+        <div class="text-center">
+          <button type="button"  (click)="dataToForm(product)" class="btn btn-primary me-3" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Update Item
+          </button>
+          <button class="btn btn-warning" (click)="deleteProduct(product)">Delete Item</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+              aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header text-center">
+                    <h1 class="modal-title fs-5 bg-warning " id="exampleModalLabel">Modify Products</h1>
+                    <button #close type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="text-info bg-secondary">
+                    </div>
+                    <form [formGroup]="modifyProduct" (ngSubmit)="modifyProduct">
+                      <div>
+                        <label for="productName">Product Name</label> <br>
+                        <input class="col-md-8" productName type="text" formControlName="productName" id="productName">
+                      </div>
+                      <div>
+                        <label for="productPrice">Product Price</label> <br>
+                        <input class="col-md-8" productPrice type="text" formControlName="productPrice" id="productPrice">
+                      </div>
+                      <div>
+                        <label for="productDescription">Product Description</label> <br>
+                        <input class="col-md-8" productDescription type="text" formControlName="productDescription"
+                          id="productDescription">
+                      </div>
+                      <div>
+                        <label for="productImageURL">Product Image URL</label> <br>
+                        <input productImageURL class="col-md-8" type="text" formControlName="productImageURL" id="productImageURL">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" (click)="updatedDataToService(product)" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
